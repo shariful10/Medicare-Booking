@@ -1,0 +1,193 @@
+/* <=======<<===== Font Family Start =====>>=======> */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+/* <=======<<===== Font Family End =====>>=======> */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* <=======<<===== Custom CSS Start =====>>=======> */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Manrope", sans-serif;
+}
+
+.swiper-pagination-bullet {
+	width: 14px !important;
+	height: 14px !important;
+	opacity: 100% !important;
+	background: #01b5c56a !important;
+}
+
+.swiper-pagination-bullet-active {
+	background: #0067ff !important;
+	border: 2px solid #01b5c5 !important;
+}
+
+.swiper {
+	padding-bottom: 70px !important;
+}
+
+.swiper-slide.swiper-slide-next {
+	background: #0067ff !important;
+	border-radius: 12px !important;
+	box-shadow: 0 20px 70px rgba(0, 103, 255, 0.3) !important;
+}
+
+.swiper-slide.swiper-slide-next h4,
+.swiper-slide.swiper-slide-next p {
+	color: #ffffff !important;
+}
+
+.swiper-pagination {
+	top: 90% !important;
+}
+
+.sticky__header {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	z-index: 99999;
+	position: sticky;
+	line-height: 80px;
+	line-height: 80px;
+	background: #ffffff;
+	background-image: url("./assets/images/mask.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 3px 3px -8px #ddd;
+}
+
+.primary__btn {
+	border: none;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	outline: 3px solid rgba(1, 181, 197, 0);
+}
+
+.primary__btn:hover {
+	outline: 3px solid #01b5c5;
+	outline-offset: -8px;
+	background-color: transparent;
+	color: #01b5c5;
+}
+
+.secondary__btn {
+	border: none;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	outline: 3px solid #6b7cff00;
+}
+
+.secondary__btn:hover {
+	outline: 3px solid #01b5c5;
+	outline-offset: -8px;
+	background-color: transparent;
+	color: #fff;
+}
+/* <=======<<===== Custom CSS End =====>>=======> */
+
+/* <=======<<===== Custom Tailwind CSS Start =====>>=======> */
+@layer base {
+	section {
+		@apply py-[75px];
+	}
+}
+
+@layer components {
+	.container {
+		@apply max-w-full w-[1440px] px-5 mx-auto;
+	}
+
+	.btn {
+		@apply bg-primaryColor py-[15px] px-[35px] rounded-[50px] text-white font-semibold mt-[38px];
+	}
+
+	.heading {
+		@apply text-[44px] leading-[54px] font-bold text-headingsColor;
+	}
+
+	.text__para {
+		@apply text-[18px] leading-[30px] font-normal text-textColor mt-[18px];
+	}
+
+	.header {
+		@apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover w-full h-[100px] leading-[100px];
+	}
+
+	.hero__section {
+		@apply bg-[url('./assets/images/hero-bg.png')] bg-no-repeat bg-center bg-cover;
+	}
+
+	.thirty {
+		@apply text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-bold text-headingsColor;
+	}
+
+	.dateTimeVdo {
+		@apply w-[150px] lg:w-[148px] xl:w-[160px] 2xl:w-[200px] bg-white absolute bottom-[50px] md:bottom-[100px] left-1 md:left-16 lg:left-[70px] xl:left-[80px] z-20 p-2 pb-3 lg:pb-[26px] lg:pt-4 lg:px-4 rounded-[10px];
+	}
+
+	.form__label {
+		@apply text-textColor font-semibold text-[16px] leading-7 mb-2;
+	}
+
+	.form__input {
+		@apply w-full px-4 py-3 border border-primaryColor focus:outline-none focus:border-irisBlueColor text-[16px] leading-7 text-headingsColor placeholder:text-textColor cursor-pointer rounded-md;
+	}
+}
+/* <=======<<===== Custom Tailwind CSS End =====>>=======> */
+
+/* <=======<<===== Responsive Start =====>>=======> */
+@media only screen and (max-width: 1024px) {
+	.container {
+		@apply w-full;
+	}
+
+	section {
+		@apply py-[35px];
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.heading {
+		@apply text-[26px] leading-[36px];
+	}
+
+	.text__para {
+		@apply text-[16px] leading-7 mt-3;
+	}
+
+	.navigation {
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 100;
+		display: none;
+		position: fixed;
+		background: #00000084;
+	}
+
+	.menu {
+		top: 0;
+		left: 0;
+		display: block;
+		width: 15rem;
+		height: 100%;
+		z-index: 200;
+		text-align: center;
+		line-height: 30px;
+		position: absolute;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		box-shadow: 10px 0 10px rgba(0, 0, 0, 0.1);
+	}
+}
+/* <=======<<===== Responsive End =====>>=======> */
