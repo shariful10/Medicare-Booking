@@ -1,18 +1,23 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-require("dotenv").config();
-const jwt = require("jsonwebtoken");
-const port = process.env.PORT || 5000;
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // ========== Middleware ==========
-app.use(cors());
-app.use(express.json());
+const app = express();
+const port = process.env.PORT || 8000;
+
+const corsOptions = {
+	origin: true,
+};
 
 app.get("/", (req, res) => {
-	res.send("Doctor Appoinment Server is running...");
+	res.send("Medicare Booking Server is running...");
 });
 
 app.listen(port, () => {
-	console.log(`Doctor Appoinment is running on port ${port}`);
+	console.log(`Medicare Booking Server is running on port ${port}`);
 });
