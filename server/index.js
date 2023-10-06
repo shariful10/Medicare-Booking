@@ -4,6 +4,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import authRoute from "./Routes/auth.js";
+import userRoute from "./Routes/user.js";
+import doctorRoute from "./Routes/doctor.js";
 
 dotenv.config();
 
@@ -25,7 +27,7 @@ const connectDB = async () => {
 		});
 		console.log("Connected to MongoDB Database");
 	} catch (err) {
-		console.log("Failed to Connected With MongoDB Database");
+		console.log("Failed to Connect With MongoDB Database");
 	}
 };
 
@@ -33,7 +35,9 @@ const connectDB = async () => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use("/api/v1/auth", authRoute); // domain/api/v1/auth/register
+app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/users", userRoute);
+app.use("/api/v1/doctors", doctorRoute);
 
 app.get("/", (req, res) => {
 	res.send("Medicare Booking Server is running...");
