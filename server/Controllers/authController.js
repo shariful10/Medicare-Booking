@@ -10,9 +10,9 @@ export const register = async (req, res) => {
 		let user = null;
 
 		if (role === "patient") {
-			user = User.findOne({ email });
+			user = await User.findOne({ email });
 		} else if (role === "doctor") {
-			user = Doctor.findOne({ email });
+			user = await Doctor.findOne({ email });
 		}
 
 		// ======== Existing User Check ========
