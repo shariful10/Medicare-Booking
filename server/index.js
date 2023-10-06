@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import authRoute from "./Routes/auth.js";
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ const connectDB = async () => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
+app.use("/api/v1/auth", authRoute); // domain/api/v1/auth/register
 
 app.get("/", (req, res) => {
 	res.send("Medicare Booking Server is running...");
