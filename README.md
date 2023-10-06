@@ -1,4 +1,6 @@
-# Doctor Appoinment
+![screenshot](https://i.ibb.co/tXbvZ9w/logo.png)
+
+# Medicare Booking
 
 ### Used Packages:
 * vite
