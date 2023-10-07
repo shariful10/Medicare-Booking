@@ -1,13 +1,16 @@
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { BASE_URL } from "../../config";
+import { Link } from "react-router-dom";
 import signupImg from "../../assets/images/signup.gif";
 import avatar from "../../assets/images/doctor-img03.png";
 import BtnSubmit from "../../components/BtnSubmit/BtnSubmit";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import uploadImageToCloudinary from "../../utils/uploadCloudinary";
 
 const Signup = () => {
-	const [uploadButtonText, setUploadButtonText] = useState("Upload Photo");
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [previewURL, setPreviewURL] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	const [formData, setFormData] = useState({
 		name: "",
@@ -18,24 +21,40 @@ const Signup = () => {
 		role: "patient",
 	});
 
-	const handleImageChange = async (image) => {
-		setUploadButtonText(image.name);
-	};
-
-	const handleFileInputChange = async (e) => {
-		const file = e.target.files[0];
-		console.log(file);
-	};
-
 	const handleInputChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const handleFileInputChange = async (e) => {
+		const file = e.target.files[0];
+		const data = await uploadImageToCloudinary(file);
+		setPreviewURL(data.url);
+		setSelectedFile(data.url);
+		setFormData({ ...formData, photo: data.url });
 	};
 
-	const buttonText = uploadButtonText.slice(0, 50);
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+
+		try {
+			const res = await fetch(`${BASE_URL}/auth/register`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			});
+			const {message} = await res.json();
+
+			if(!res.ok) {
+				throw new Error(message);
+			}
+
+			setLoading(false);
+			toast.success(message);
+		} catch (err) {}
+	};
 
 	return (
 		<section>
@@ -111,9 +130,7 @@ const Signup = () => {
 										onChange={handleInputChange}
 										className="text-headingsColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
 									>
-										<option disabled value="select">
-											Select
-										</option>
+										<option value="select">Select</option>
 										<option value="male">Male</option>
 										<option value="female">Female</option>
 										<option value="other">Other</option>
@@ -127,7 +144,7 @@ const Signup = () => {
 								<div className="border-gray-300 rounded-lg bg-[#0066FF46] hover:bg-[#CCF0F3] py-4 px-5 max-w-fit group">
 									<label>
 										<input
-											onChange={(e) => handleImageChange(e.target.files[0])}
+											onChange={handleFileInputChange}
 											className="cursor-pointer hidden"
 											type="file"
 											name="photo"
@@ -136,7 +153,7 @@ const Signup = () => {
 											hidden
 										/>
 										<div className="text-primaryColor group-hover:text-irisBlueColor text-[15px] font-semibold cursor-pointer flex gap-2 justify-center items-center">
-											{buttonText}
+											Upload Image
 										</div>
 									</label>
 								</div>
