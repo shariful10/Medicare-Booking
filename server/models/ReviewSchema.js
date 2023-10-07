@@ -25,4 +25,8 @@ const reviewSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
+reviewSchema.pre(/^find/, function(next){
+	
+})
+
 export default mongoose.model("Review", reviewSchema);
