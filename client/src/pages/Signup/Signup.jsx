@@ -1,13 +1,13 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { BASE_URL } from "../../config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signupImg from "../../assets/images/signup.gif";
-import avatar from "../../assets/images/doctor-img03.png";
-import BtnSubmit from "../../components/BtnSubmit/BtnSubmit";
 import uploadImageToCloudinary from "../../utils/uploadCloudinary";
+import HashLoader from 'react-spinners/HashLoader'
 
 const Signup = () => {
+	const navigate = useNavigate();
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [previewURL, setPreviewURL] = useState("");
 	const [loading, setLoading] = useState(false);
@@ -45,22 +45,26 @@ const Signup = () => {
 				},
 				body: JSON.stringify(formData),
 			});
-			const {message} = await res.json();
+			const { message } = await res.json();
 
-			if(!res.ok) {
+			if (!res.ok) {
 				throw new Error(message);
 			}
 
 			setLoading(false);
 			toast.success(message);
-		} catch (err) {}
+			navigate("/login");
+		} catch (err) {
+			toast.error(err.message);
+			setLoading(false);
+		}
 	};
 
 	return (
 		<section>
 			<div className="container">
 				<div className="grid lg:grid-cols-2 md:gap-16">
-					{/* =====>>===== Image Box =====>>===== */}
+					{/* <=====<<===== Image Box =====>>=====> */}
 					<div className="bg-primaryColor rounded-lg md:rounded-l-lg">
 						<figure className="rounded-l-lg">
 							<img
@@ -70,7 +74,7 @@ const Signup = () => {
 							/>
 						</figure>
 					</div>
-					{/* =====>>===== Signup Form =====>>===== */}
+					{/* <=====<<===== Signup Form =====>>=====> */}
 					<div className="rounded-l-lg lg:pl-16 lg:py-16 mt-10 md:mt-0">
 						<h3 className="text-primaryColor text-[22px] leading-9 font-bold mb-10">
 							Creatr an <span className="text-irisBlueColor">account</span>
@@ -138,9 +142,15 @@ const Signup = () => {
 								</label>
 							</div>
 							<div className="mb-5 flex items-center gap-3">
-								<figure className="w-[60px] h-[60px] rounded-full border-2 border-primaryColor flex items-center justify-center">
-									<img src={avatar} alt="" className="w-full rounded-full" />
-								</figure>
+								{selectedFile && (
+									<figure className="w-[60px] h-[60px] rounded-[100%] flex items-center justify-center">
+										<img
+											src={previewURL}
+											alt=""
+											className="w-[60px] h-[60px] rounded-[100%]"
+										/>
+									</figure>
+								)}
 								<div className="border-gray-300 rounded-lg bg-[#0066FF46] hover:bg-[#CCF0F3] py-4 px-5 max-w-fit group">
 									<label>
 										<input
@@ -159,7 +169,13 @@ const Signup = () => {
 								</div>
 							</div>
 							<div className="mt-12">
-								<BtnSubmit title={"Sign Up"} />
+								<button
+									type="submit"
+									disabled={loading && true}
+									className="bg-primaryColor w-full px-5 md:px-10 py-2 md:py-3 rounded-lg md:font-semibold primary__btn text-white"
+								>
+									{loading ? <HashLoader size={35} color="#FFFFFF" /> : "Sign Up"}
+								</button>
 							</div>
 							<p className="mt-5 text-textColor text-center">
 								Already have an account?

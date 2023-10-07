@@ -10,9 +10,9 @@ const AboutSection = () => {
 				<div className="flex justify-between gap-[50px] lg:gap-[130px] xl:gap-0 flex-col lg:flex-row">
 					{/* <============>>======== About Image =======>>======> */}
 					<div className="relatve w-full lg:w-1/2 xl:w-[770px] z-10">
-						<img src={aboutImg} alt="" />
+						<img src={aboutImg} className="z-0" alt="" />
 						<div className="absolute z-20 bottom-[-2350px] md:bottom-[-1925px] lg:bottom-[-1580px] xl:bottom-[-1510px] 2xl:xl:bottom-[-1270px] w-[200px] md:w-[300px] right-[4%] md:right-[22%] lg:right-[38%] xl:right-[50%] 2xl:right-[55%]">
-							<img src={aboutCardImg} alt="" />
+							<img src={aboutCardImg} className="z-0" alt="" />
 						</div>
 					</div>
 
