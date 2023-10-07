@@ -9,7 +9,7 @@ const Features = () => {
 			<div className="container">
 				<div className="grid md:grid-cols-2 items-center justify-between flex-col lg:flex-row">
 					{/* <============= Feature Content =============> */}
-					<div className="xl:w-[670px] order-2 md:order-1 mt-[50px] md:mt-0">
+					<div className="xl:w-[570px] order-2 md:order-1 mt-[50px] md:mt-0">
 						<h2 className="heading">
 							Ger virtual treatment <br /> anytime.
 						</h2>
@@ -28,7 +28,7 @@ const Features = () => {
 						</div>
 					</div>
 					{/* <============= Feature Image =============> */}
-					<div className="relative z-10 xl:w-[770px] flex justify-end mt-[50px] lg:mt-0 order-1 md:order-2">
+					<div className="relative z-10 xl:w-[690px] flex justify-end mt-[50px] lg:mt-0 order-1 md:order-2">
 						<img src={featureImg} className="md:w-3/4" alt="" />
 						<div className="dateTimeVdo">
 							<div className="flex item-center justify-between">
