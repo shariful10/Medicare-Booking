@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../../assets/images/logo.png";
 import { navlinks } from "../../../assets/data/navlinks";
 import { Link, NavLink } from "react-router-dom";
@@ -6,19 +6,21 @@ import userImg from "../../../assets/images/avatar-icon.png";
 import { BiMenu } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import BtnLogin from "../../BtnLogin/BtnLogin";
+import { authContext } from "./../../../context/AuthContext";
 
 const Header = () => {
 	const [showMenu, setShowMenu] = useState(false);
+	const { user, role, token } = useContext(authContext);
 
 	return (
 		<header className="header flex items-center sticky__header">
 			<div className="container">
 				<div className="flex items-center justify-between">
-					{/* <============= Logo =============> */}
+					{/* <======<<======= Logo =======>>======> */}
 					<div>
 						<img src={logo} alt="" />
 					</div>
-					{/* <============= Menu =============> */}
+					{/* <======<<======= Menu =======>>======> */}
 					<div className="hidden lg:block">
 						<ul className="menu flex items-center gap-[2.7rem] text-center">
 							{navlinks.map(({ id, path, display }) => (
@@ -39,7 +41,7 @@ const Header = () => {
 					</div>
 					{/* <============= Nav Right =============> */}
 					<div className="flex items-center gap-4">
-						{/* <============= Profile Picture =============> */}
+						{/* <============= Profile Pic & Name =============> */}
 						<div className="hidden">
 							<Link to="/">
 								<figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
@@ -47,6 +49,7 @@ const Header = () => {
 								</figure>
 							</Link>
 						</div>
+						<h1>{user?.name}</h1>
 						{/* <============= Login Button =============> */}
 						<div className="hidden lg:block">
 							<Link to="/login">
