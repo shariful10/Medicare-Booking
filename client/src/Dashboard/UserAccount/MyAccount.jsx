@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import userImg from "../../assets/images/doctor-img03.png";
 import useAuth from "./../../components/Hooks/useAuth";
+import MyBookings from "./MyBookings";
+import ProfileSettings from "./profileSettings";
 
 const MyAccount = () => {
 	const { dispatch } = useAuth();
+	const [tab, setTab] = useState("bookings");
 
 	const handleLogout = () => {
 		dispatch({ type: "LOGOUT" });
 	};
 
 	return (
-		<div className="max-w-[1170px] px-5 mx-auto">
+		<div className="max-w-[1170px] px-5 mx-auto mt-12">
 			<div className="grid md:grid-cols-3 gap-10">
 				<div className="pb-[50px] px-[30px] rounded-md">
 					<div className="flex items-center justify-center">
@@ -44,18 +47,34 @@ const MyAccount = () => {
 						>
 							Logout
 						</button>
-						<button className="btn__profile delete__btn">
+						<button className="btn__profile delete__btn mt-5">
 							Delete Account
 						</button>
 					</div>
 				</div>
 				<div className="md:col-span-2 md:px-[30px]">
 					<div>
-						<button className="profile__btn">My Bookings</button>
-						<button className="profile__btn">
+						<button
+							onClick={() => setTab("bookings")}
+							className={`${
+								tab === "bookings" &&
+								"bg-primaryColor text-white font-normal border-transparent"
+							} profile__btn`}
+						>
+							My Bookings
+						</button>
+						<button
+							onClick={() => setTab("settings")}
+							className={`${
+								tab === "settings" &&
+								"bg-primaryColor text-white font-normal border-transparent"
+							} profile__btn`}
+						>
 							Profile Settings
 						</button>
 					</div>
+					{tab === "bookings" && <MyBookings />}
+					{tab === "settings" && <ProfileSettings />}
 				</div>
 			</div>
 		</div>
