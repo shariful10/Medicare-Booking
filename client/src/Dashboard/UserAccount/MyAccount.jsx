@@ -5,6 +5,10 @@ import useAuth from "./../../components/Hooks/useAuth";
 const MyAccount = () => {
 	const { dispatch } = useAuth();
 
+	const handleLogout = () => {
+		dispatch({ type: "LOGOUT" });
+	};
+
 	return (
 		<div className="max-w-[1170px] px-5 mx-auto">
 			<div className="grid md:grid-cols-3 gap-10">
@@ -34,7 +38,10 @@ const MyAccount = () => {
 						</p>
 					</div>
 					<div className="mt-[50px] md:mt-[100px]">
-						<button className="btn__profile primary__btn bg-primaryColor">
+						<button
+							onClick={handleLogout}
+							className="btn__profile primary__btn bg-primaryColor"
+						>
 							Logout
 						</button>
 						<button className="btn__profile delete__btn bg-red-600">
