@@ -1,8 +1,12 @@
 import { useState } from "react";
-import BtnSubmit from "../../components/BtnSubmit/BtnSubmit";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { BASE_URL } from "../../config";
+import HashLoader from "react-spinners/HashLoader";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -18,7 +22,7 @@ const Login = () => {
 				<h3 className="text-primaryColor text-[22px] leading-9 font-bold mb-10 text-center">
 					Hello! <span className="text-irisBlueColor">Welcome</span> Back 🥳
 				</h3>
-				<form className="py-4 md:py-0">
+				<form onSubmit={handleSubmit} className="py-4 md:py-0">
 					<div className="mb-5">
 						<input
 							type="email"
@@ -42,7 +46,13 @@ const Login = () => {
 						/>
 					</div>
 					<div className="mt-12">
-						<BtnSubmit title={"Login"} />
+						<button
+							type="submit"
+							disabled={loading && true}
+							className="bg-primaryColor w-full px-5 md:px-10 py-2 md:py-3 rounded-lg md:font-semibold primary__btn text-white"
+						>
+							{loading ? <HashLoader size={30} color="#FFFFFF" /> : "Login"}
+						</button>
 					</div>
 					<p className="mt-5 text-textColor text-center">
 						Don&apos;t have an account?{" "}

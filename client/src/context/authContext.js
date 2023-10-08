@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
 
 const initialState = {
 	user: null,
@@ -34,4 +34,19 @@ const authReducer = (state, action) => {
 		default:
 			return state;
 	}
+};
+
+export const AuthContextProvider = ({ children }) => {
+	const [state, dispatch] = useReducer(authReducer, initialState);
+	return (
+		<authContext.Provider
+			value={{
+				user: state.user,
+				role: state.role,
+				token: state.token,
+			}}
+		>
+			{children}
+		</authContext.Provider>
+	);
 };
