@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
-import logo from "../../../assets/images/logo.png";
-import { navlinks } from "../../../assets/data/navlinks";
-import { Link, NavLink } from "react-router-dom";
-import userImg from "../../../assets/images/avatar-icon.png";
 import { BiMenu } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import BtnLogin from "../../BtnLogin/BtnLogin";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../../../assets/images/logo.png";
+import React, { useContext, useState } from "react";
+import { navlinks } from "../../../assets/data/navlinks";
 import { authContext } from "./../../../context/AuthContext";
 
 const Header = () => {
@@ -41,7 +40,9 @@ const Header = () => {
 					</div>
 					{/* <=====<<===== Nav Right =====>>=====> */}
 					<div className="flex items-center gap-4">
-						{/* <=====<<===== Profile Pic & Login Btn =====>>=====> */}
+						{/* <=====<<======<>=====>>=====> */}
+						{/* <> Profile Pic & Login Btn <> */}
+						{/* <=====<<======<>=====>>=====> */}
 						{token && user ? (
 							<div>
 								<Link

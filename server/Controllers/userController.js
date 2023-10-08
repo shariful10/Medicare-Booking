@@ -4,11 +4,7 @@ export const updateUser = async (req, res) => {
 	const id = req.params.id;
 
 	try {
-		const updatedUser = await User.findByIdAndUpdate(
-            id, 
-            { $set: req.body }, 
-            { new: true }
-        );
+		const updatedUser = await User.findByIdAndUpdate(id, { $set: req.body }, { new: true });
 		res.status(200).json({ success: true, message: "Successfully updated", data: updatedUser });
 	} catch (err) {
 		res.status(500).json({ success: false, message: "Failed to update" });
@@ -45,3 +41,25 @@ export const getAllUser = async (req, res) => {
 		res.status(404).json({ success: false, message: "Not found" });
 	}
 };
+
+export const getUserProfile = async (req, res) => {
+	const userId = req.userId;
+
+	try {
+		const user = await User.findById(userId);
+
+		if (!user) {
+			return res.status(404).json({ success: false, message: "User Not Found" });
+		}
+		const { password, ...rset } = user._doc;
+		res.status(200).json({
+			success: true,
+			message: "Profile info is getting",
+			data: { ...rset },
+		});
+	} catch (error) {
+		res.status(500).json({ success: false, message: "Something went wrong, can not get" });
+	}
+};
+
+export const getMyAppoinments = async (req, res) => {};
