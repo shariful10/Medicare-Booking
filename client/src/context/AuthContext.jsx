@@ -6,7 +6,7 @@ const initialState = {
 	token: null,
 };
 
-const authContext = createContext(initialState);
+export const authContext = createContext(initialState);
 
 const authReducer = (state, action) => {
 	switch (action.type) {

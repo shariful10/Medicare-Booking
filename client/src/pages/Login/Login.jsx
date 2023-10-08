@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../../config";
 import HashLoader from "react-spinners/HashLoader";
 import { Link, useNavigate } from "react-router-dom";
+import { authContext } from "./../../context/AuthContext";
 
 const Login = () => {
 	const navigate = useNavigate();
+	const { dispatch } = useContext(authContext);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		email: "",
@@ -14,6 +16,44 @@ const Login = () => {
 
 	const handleInputChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+
+		try {
+			const res = await fetch(`${BASE_URL}/auth/login`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			});
+			const result = await res.json();
+
+			if (!res.ok) {
+				throw new Error(result.message);
+			}
+
+			dispatch({
+				type: "LOGIN_SUCCESS",
+				payload: {
+					user: result.data,
+					token: result.token,
+					role: result.role,
+				},
+			});
+
+			console.log(result, "login data");
+
+			setLoading(false);
+			toast.success(result.message);
+			navigate("/");
+		} catch (err) {
+			toast.error(err.message);
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -51,7 +91,7 @@ const Login = () => {
 							disabled={loading && true}
 							className="bg-primaryColor w-full px-5 md:px-10 py-2 md:py-3 rounded-lg md:font-semibold primary__btn text-white"
 						>
-							{loading ? <HashLoader size={30} color="#FFFFFF" /> : "Login"}
+							{loading ? <HashLoader size={24} color="#FFFFFF" /> : "Login"}
 						</button>
 					</div>
 					<p className="mt-5 text-textColor text-center">
