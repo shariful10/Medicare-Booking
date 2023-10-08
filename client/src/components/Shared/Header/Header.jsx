@@ -16,11 +16,11 @@ const Header = () => {
 		<header className="header flex items-center sticky__header">
 			<div className="container">
 				<div className="flex items-center justify-between">
-					{/* <======<<======= Logo =======>>======> */}
+					{/* <=====<<===== Logo =====>>=====> */}
 					<div>
 						<img src={logo} alt="" />
 					</div>
-					{/* <======<<======= Menu =======>>======> */}
+					{/* <=====<<===== Menu =====>>=====> */}
 					<div className="hidden lg:block">
 						<ul className="menu flex items-center gap-[2.7rem] text-center">
 							{navlinks.map(({ id, path, display }) => (
@@ -39,25 +39,34 @@ const Header = () => {
 							))}
 						</ul>
 					</div>
-					{/* <============= Nav Right =============> */}
+					{/* <=====<<===== Nav Right =====>>=====> */}
 					<div className="flex items-center gap-4">
-						{/* <============= Profile Pic & Name =============> */}
-						<div className="hidden">
-							<Link to="/">
-								<figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
-									<img src={userImg} className="w-full rounded-full" alt="" />
-								</figure>
-							</Link>
-						</div>
-						<h1>{user?.name}</h1>
-						{/* <============= Login Button =============> */}
-						<div className="hidden lg:block">
-							<Link to="/login">
-								<BtnLogin title="Login" />
-							</Link>
-						</div>
+						{/* <=====<<===== Profile Pic & Login Btn =====>>=====> */}
+						{token && user ? (
+							<div>
+								<Link
+									to={`${
+										role === "doctor"
+											? "/doctor/profile/me"
+											: "/users/profile/me"
+									}`}
+								>
+									<img
+										src={user?.photo}
+										className="w-[40px] h-[40px] rounded-full cursor-pointer"
+										alt=""
+									/>
+								</Link>
+							</div>
+						) : (
+							<div className="hidden lg:block">
+								<Link to="/login">
+									<BtnLogin title="Login" />
+								</Link>
+							</div>
+						)}
 					</div>
-					{/* <============= Dropdown & Icon =============> */}
+					{/* <=====<<===== Dropdown Icon =====>>=====> */}
 					<div className="dropdown lg:hidden">
 						<span
 							onClick={() => {
@@ -70,7 +79,7 @@ const Header = () => {
 								<BiMenu className="h-6 w-6 cursor-pointer" />
 							)}
 						</span>
-						{/* <============= Mobile Menu =============> */}
+						{/* <=====<<===== Mobile Menu =====>>=====> */}
 						<div
 							className={`${
 								showMenu
@@ -79,7 +88,7 @@ const Header = () => {
 							} bg-[#0066ff00] rounded shadow-2xl border text-lg absolute z-10 transition-all duration-500 min-h-screen w-[15rem]`}
 						>
 							<ul className="menu bg-white">
-								{/* <============= Logo =============> */}
+								{/* <=====<<===== Logo =====>>=====> */}
 								<div className="py-8">
 									<img src={logo} className="mx-auto" alt="" />
 								</div>
