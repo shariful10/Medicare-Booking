@@ -7,6 +7,9 @@ import Contact from "../pages/ContactPage/Contact";
 import Services from "../pages/ServicesPage/Services";
 import { createBrowserRouter } from "react-router-dom";
 import DoctorDetails from "../pages/DoctorsPage/DoctorDetails";
+import MyAccount from "../Dashboard/UserAccount/MyAccount";
+import Dashboard from "../Dashboard/DoctorAccount/Dashboard";
+import ProtectedRoute from "./ProtectedRoute";
 export const router = createBrowserRouter([
 	{
 		path: "/",
@@ -39,6 +42,22 @@ export const router = createBrowserRouter([
 			{
 				path: "/register",
 				element: <Signup />,
+			},
+			{
+				path: "/users/profile/me",
+				element: (
+					<ProtectedRoute allowedRoles={["patient"]}>
+						<MyAccount />
+					</ProtectedRoute>
+				),
+			},
+			{
+				path: "/doctors/profile/me",
+				element: (
+					<ProtectedRoute allowedRoles={["doctor"]}>
+						<Dashboard />
+					</ProtectedRoute>
+				),
 			},
 		],
 	},

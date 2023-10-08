@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../../config";
 import HashLoader from "react-spinners/HashLoader";
 import { Link, useNavigate } from "react-router-dom";
-import { authContext } from "./../../context/AuthContext";
+import useAuth from './../../components/Hooks/useAuth';
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { dispatch } = useContext(authContext);
+	const { dispatch } = useAuth();
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		email: "",
@@ -60,7 +60,7 @@ const Login = () => {
 		<section className="px-5 lg:px-0">
 			<div className="w-full max-w-[570px] mx-auto rounded-lg shadow-md md:p-10 container">
 				<h3 className="text-primaryColor text-[22px] leading-9 font-bold mb-10 text-center">
-					Hello! <span className="text-irisBlueColor">Welcome</span> Back 🥳
+					Hello! <span className="text-irisBlueColor">Welcome</span> Back 👋
 				</h3>
 				<form onSubmit={handleSubmit} className="py-4 md:py-0">
 					<div className="mb-5">
@@ -89,7 +89,7 @@ const Login = () => {
 						<button
 							type="submit"
 							disabled={loading && true}
-							className="bg-primaryColor w-full px-5 md:px-10 py-2 md:py-3 rounded-lg md:font-semibold primary__btn text-white"
+							className="btn__submit primary__btn"
 						>
 							{loading ? <HashLoader size={24} color="#FFFFFF" /> : "Login"}
 						</button>

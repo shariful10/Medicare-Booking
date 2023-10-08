@@ -78,6 +78,20 @@ body {
 	color: #01b5c5;
 }
 
+.delete__btn {
+	border: none;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	outline: 3px solid rgba(1, 181, 197, 0);
+}
+
+.delete__btn:hover {
+	outline: 3px solid #FF0000;
+	outline-offset: -8px;
+	background-color: transparent;
+	color: #FF0000;
+}
+
 .secondary__btn {
 	border: none;
 	cursor: pointer;
@@ -139,6 +153,14 @@ body {
 
 	.form__input {
 		@apply w-full px-4 py-3 border border-primaryColor focus:outline-none focus:border-irisBlueColor text-[16px] leading-7 text-headingsColor placeholder:text-textColor cursor-pointer rounded-md;
+	}
+
+	.btn__submit {
+		@apply bg-primaryColor w-full px-5 md:px-10 py-2 md:py-3 rounded-lg md:font-semibold text-white;
+	}
+
+	.btn__profile {
+		@apply w-full p-3 text-[16px] leading-7 rounded-md text-white;
 	}
 }
 /* <=======<<===== Custom Tailwind CSS End =====>>=======> */

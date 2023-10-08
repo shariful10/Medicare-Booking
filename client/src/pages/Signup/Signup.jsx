@@ -77,7 +77,7 @@ const Signup = () => {
 					{/* <=====<<===== Signup Form =====>>=====> */}
 					<div className="rounded-l-lg lg:pl-16 lg:py-16 mt-10 md:mt-0">
 						<h3 className="text-primaryColor text-[22px] leading-9 font-bold mb-10">
-							Create an <span className="text-irisBlueColor">account🎇</span>
+							Create an <span className="text-irisBlueColor">Account 🖐️</span>
 						</h3>
 						<form onSubmit={handleSubmit}>
 							<div className="mb-5">
@@ -172,7 +172,7 @@ const Signup = () => {
 								<button
 									type="submit"
 									disabled={loading && true}
-									className="bg-primaryColor w-full px-5 md:px-10 py-2 md:py-3 rounded-lg md:font-semibold primary__btn text-white"
+									className="btn__submit primary__btn"
 								>
 									{loading ? <HashLoader size={30} color="#FFFFFF" /> : "Sign Up"}
 								</button>

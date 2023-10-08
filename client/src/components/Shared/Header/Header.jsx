@@ -3,13 +3,13 @@ import { MdClose } from "react-icons/md";
 import BtnLogin from "../../BtnLogin/BtnLogin";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { navlinks } from "../../../assets/data/navlinks";
-import { authContext } from "./../../../context/AuthContext";
+import useAuth from './../../Hooks/useAuth';
 
 const Header = () => {
 	const [showMenu, setShowMenu] = useState(false);
-	const { user, role, token } = useContext(authContext);
+	const { user, role, token } = useAuth();
 
 	return (
 		<header className="header flex items-center sticky__header">
