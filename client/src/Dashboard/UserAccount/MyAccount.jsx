@@ -44,8 +44,16 @@ const MyAccount = () => {
 						>
 							Logout
 						</button>
-						<button className="btn__profile delete__btn bg-red-600">
+						<button className="btn__profile delete__btn">
 							Delete Account
+						</button>
+					</div>
+				</div>
+				<div className="md:col-span-2 md:px-[30px]">
+					<div>
+						<button className="profile__btn">My Bookings</button>
+						<button className="profile__btn">
+							Profile Settings
 						</button>
 					</div>
 				</div>

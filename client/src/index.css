@@ -81,15 +81,16 @@ body {
 .delete__btn {
 	border: none;
 	cursor: pointer;
+	background: #e20000;
 	transition: 0.3s ease-in-out;
 	outline: 3px solid rgba(1, 181, 197, 0);
 }
 
 .delete__btn:hover {
-	outline: 3px solid #FF0000;
+	outline: 3px solid #e20000;
 	outline-offset: -8px;
 	background-color: transparent;
-	color: #FF0000;
+	color: #ff0000;
 }
 
 .secondary__btn {
@@ -161,6 +162,10 @@ body {
 
 	.btn__profile {
 		@apply w-full p-3 text-[16px] leading-7 rounded-md text-white;
+	}
+
+	.profile__btn {
+		@apply p-2 mr-5 px-5 rounded-md text-primaryColor font-semibold text-[16px] leading-7 border border-primaryColor hover:bg-irisBlueColor hover:border-transparent hover:text-white transition duration-500;
 	}
 }
 /* <=======<<===== Custom Tailwind CSS End =====>>=======> */
