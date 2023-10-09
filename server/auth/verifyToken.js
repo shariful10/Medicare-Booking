@@ -21,7 +21,7 @@ export const authenticate = async (req, res, next) => {
 		req.role = decoded.role;
 
 		next(); // ======== Must Be Call The next function ========
-	} catch (error) {
+	} catch (err) {
 		if (err.code === "TokenExpiredError") {
 			return res.status(401).json({ message: "Token is expired" });
 		} else {
