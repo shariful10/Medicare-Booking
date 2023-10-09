@@ -6,6 +6,7 @@ import ProfileSettings from "./profileSettings";
 import useGetProfile from "../../components/Hooks/useFetchData";
 import { BASE_URL } from "../../config";
 import Loading from "../../components/Loader/Loading";
+import Error from "../../components/Error/Error";
 
 const MyAccount = () => {
 	const { dispatch } = useAuth();
@@ -26,7 +27,8 @@ const MyAccount = () => {
 	return (
 		<section>
 			<div className="max-w-[1170px] px-5 mx-auto">
-				{loading && <Loading />}
+				{loading && !error && <Loading />}
+				{error && !loading && <Error errorMessage={error} />}
 				{!loading && !error && (
 					<div className="grid md:grid-cols-3 gap-10">
 						<div className="pb-[50px] px-[30px] rounded-md">
