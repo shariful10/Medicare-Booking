@@ -165,7 +165,7 @@ body {
 	}
 
 	.profile__btn {
-		@apply p-2 mr-5 px-5 rounded-md text-irisBlueColor font-semibold text-[16px] leading-7 border-2 border-irisBlueColor transition duration-200;
+		@apply p-2 mr-5 px-5 rounded-md text-irisBlueColor font-semibold text-[14px] md:text-[16px] leading-7 border-2 border-irisBlueColor transition duration-200;
 	}
 }
 /* <=====<<===== Custom Tailwind CSS End =====>>======> */

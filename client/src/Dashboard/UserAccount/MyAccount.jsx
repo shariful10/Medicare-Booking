@@ -1,5 +1,4 @@
 import { useState } from "react";
-import userImg from "../../assets/images/doctor-img03.png";
 import useAuth from "./../../components/Hooks/useAuth";
 import MyBookings from "./MyBookings";
 import ProfileSettings from "./profileSettings";
@@ -36,7 +35,7 @@ const MyAccount = () => {
 								{/* <====<<==== Image ====>>====> */}
 								<figure className="w-[100px] h-[100px] rounded-full border-2 border-primaryColor">
 									<img
-										src={userImg}
+										src={userData.photo}
 										alt="Profile Picture"
 										className="w-full h-full rounded-full"
 									/>
@@ -44,15 +43,15 @@ const MyAccount = () => {
 							</div>
 							<div className="text-center mt-4">
 								<h3 className="text-[18px] leading-[30px] text-headingsColor font-bold">
-									Md. Shariful Islam
+									{userData.name}
 								</h3>
 								<p className="text-textColor text-[15px] leading-6 font-medium">
-									example@gmail.com
+									{userData.email}
 								</p>
 								<p className="text-textColor text-[15px] leading-6 font-medium">
 									Blood Type:{" "}
 									<span className="ml-2 text-headingsColor text-[22px] leading-8">
-										o+
+										{userData.bloodType}
 									</span>
 								</p>
 							</div>
@@ -69,7 +68,7 @@ const MyAccount = () => {
 							</div>
 						</div>
 						<div className="md:col-span-2 md:px-[30px]">
-							<div>
+							<div className="flex justify-center md:justify-evenly">
 								<button
 									onClick={() => setTab("bookings")}
 									className={`${
@@ -90,7 +89,9 @@ const MyAccount = () => {
 								</button>
 							</div>
 							{tab === "bookings" && <MyBookings />}
-							{tab === "settings" && <ProfileSettings />}
+							{tab === "settings" && (
+								<ProfileSettings user={userData} />
+							)}
 						</div>
 					</div>
 				)}

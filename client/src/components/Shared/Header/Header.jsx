@@ -6,10 +6,15 @@ import logo from "../../../assets/images/logo.png";
 import React, { useState } from "react";
 import { navlinks } from "../../../assets/data/navlinks";
 import useAuth from "./../../Hooks/useAuth";
+import useGetProfile from "../../Hooks/useFetchData";
+import { BASE_URL } from "../../../config";
 
 const Header = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const { user, role, token } = useAuth();
+	const [tab, setTab] = useState("bookings");
+
+	const { data: userData } = useGetProfile(`${BASE_URL}/users/profile/me`);
 
 	return (
 		<header className="header flex items-center sticky__header">
@@ -53,7 +58,7 @@ const Header = () => {
 									}`}
 								>
 									<img
-										src={user?.photo}
+										src={userData?.photo}
 										className="w-[40px] h-[40px] rounded-full cursor-pointer"
 										alt=""
 									/>

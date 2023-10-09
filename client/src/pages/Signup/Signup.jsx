@@ -174,7 +174,7 @@ const Signup = () => {
 									disabled={loading && true}
 									className="btn__submit primary__btn"
 								>
-									{loading ? <HashLoader size={30} color="#FFFFFF" /> : "Sign Up"}
+									{loading ? <HashLoader size={24} color="#FFFFFF" /> : "Sign Up"}
 								</button>
 							</div>
 							<p className="mt-5 text-textColor text-center">
