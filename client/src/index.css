@@ -168,9 +168,9 @@ body {
 		@apply p-2 mr-5 px-5 rounded-md text-irisBlueColor font-semibold text-[16px] leading-7 border-2 border-irisBlueColor transition duration-200;
 	}
 }
-/* <=======<<===== Custom Tailwind CSS End =====>>=======> */
+/* <=====<<===== Custom Tailwind CSS End =====>>======> */
 
-/* <=======<<===== Responsive Start =====>>=======> */
+/* <=====<<===== Responsive Start =====>>======> */
 @media only screen and (max-width: 1024px) {
 	.container {
 		@apply w-full;

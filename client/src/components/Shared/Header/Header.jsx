@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import React, { useState } from "react";
 import { navlinks } from "../../../assets/data/navlinks";
-import useAuth from './../../Hooks/useAuth';
+import useAuth from "./../../Hooks/useAuth";
 
 const Header = () => {
 	const [showMenu, setShowMenu] = useState(false);
@@ -16,9 +16,9 @@ const Header = () => {
 			<div className="container">
 				<div className="flex items-center justify-between">
 					{/* <=====<<===== Logo =====>>=====> */}
-					<div>
+					<Link to="/">
 						<img src={logo} alt="" />
-					</div>
+					</Link>
 					{/* <=====<<===== Menu =====>>=====> */}
 					<div className="hidden lg:block">
 						<ul className="menu flex items-center gap-[2.7rem] text-center">
@@ -91,7 +91,11 @@ const Header = () => {
 							<ul className="menu bg-white">
 								{/* <=====<<===== Logo =====>>=====> */}
 								<div className="py-8">
-									<img src={logo} className="mx-auto" alt="" />
+									<img
+										src={logo}
+										className="mx-auto"
+										alt=""
+									/>
 								</div>
 								<div className="min-h-[calc(100vh-66px)] flex-col items-center">
 									{navlinks.map(({ id, path, display }) => (

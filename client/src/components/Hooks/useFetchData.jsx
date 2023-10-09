@@ -16,15 +16,15 @@ const useFetchData = (url) => {
 				});
 				const result = await res.json();
 
-				if (!result.ok) {
+				if (!res.ok) {
 					throw new Error(result.message + "🤢");
 				}
 
 				setData(result.data);
 				setLoading(false);
-			} catch (error) {
+			} catch (err) {
 				setLoading(false);
-				setError(error.message);
+				setError(err.message);
 			}
 		};
 		fetchData();
